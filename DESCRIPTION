@@ -1,0 +1,21 @@
+Type: Compendium
+Package: Binder with R
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.1
+Authors@R: 
+    person(given = "Thomas",
+           family = "Julou",
+           role = c("aut", "cre"),
+           email = "thomas.julou@normalesup.org",
+           comment = c(ORCID = "0000-0001-7123-198X"))
+Description: A dry run with Binder, renv, holepunch and
+    friends
+License: What license it uses
+Depends: 
+    knitr,
+    renv,
+    rmarkdown
+Remotes: 
+    rstudio/renv
+Encoding: UTF-8
+LazyData: true
