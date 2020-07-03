@@ -3,7 +3,7 @@ This repo serves as a playground to release interactive notebooks.
 For instance, this repository can be loaded in an interactive RStudio session using this badge:
 
 <!-- badges: start -->
-[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/julou/BinderWithR/R-3.6?urlpath=rstudio)
+[![Launch Rstudio Binder](http://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/julou/BinderWithR/master?urlpath=rstudio)
 <!-- badges: end -->
 
 ## Context
@@ -58,9 +58,9 @@ write_compendium_description(
 # write_dockerfile(maintainer = "Thomas Julou")
 # ignore warnings
 
-write_dockerfile(maintainer = "Thomas Julou", branch = "R-3.6")
+write_dockerfile(maintainer = "Thomas Julou")
 
-generate_badge(branch = "R-3.6")
+generate_badge()
 
 build_binder()
 
