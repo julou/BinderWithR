@@ -7,6 +7,7 @@ USER ${NB_USER}
 
 
 
-RUN wget https://github.com/julou/BinderWithR/raw/R-3.6/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2020-07-03/')); devtools::install_deps()"
+RUN wget https://github.com/julou/BinderWithR/raw/R-3.6/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2020-07-03/'))"
+#; devtools::install_deps()
 
 RUN rm DESCRIPTION.1; exit 0
