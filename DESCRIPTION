@@ -14,7 +14,6 @@ License: What license it uses
 Depends: 
     knitr,
     renv,
-    rmarkdown,
-    tidyverse
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
