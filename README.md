@@ -69,5 +69,15 @@ build_binder()
 
 ### Using Rocker manually
 
-Follow the instructions at https://hub.docker.com/r/rocker/binder.  
-NB: make sure to specify the rocker/binder version corresponding to the R version in your `renv.lock` file...
+The alternative is to launch a bare Rocker instance and to install the relevant package version using `renv::restore()`.
+To minimise the time of package installation, it is possible to use binaries pre-compiled for Linux from RStudio's package manager (NB: the relevant system prerequisite for Rocker's images are Ubuntu 18).
+
+Follow the instructions at https://hub.docker.com/r/rocker/binder: copy the Dockerfile example at `.binder/Dockerfile` and customise as necessary. In particular, 
+
+- make sure to specify the rocker/binder version corresponding to the R version in your `renv.lock` file.
+- append commands to fetch the GitHub repo and install the packages indicated by `renv`:  
+```
+# binary packages, repo version 2020-07-02
+RUN R -e "renv::restore(repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/bionic/298'))"
+```
+

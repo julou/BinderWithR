@@ -22,7 +22,6 @@ USER ${NB_USER}
 ## Run an install.R script, if it exists.
 #RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
-RUN wget https://github.com/julou/BinderWithR/raw/R-3.6/DESCRIPTION
 # binary packages, repo version 2020-07-02
 RUN R -e "renv::restore(repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/bionic/298'))"
 
