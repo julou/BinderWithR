@@ -7,7 +7,7 @@ USER ${NB_USER}
 
 RUN wget https://github.com/julou/BinderWithR/raw/R-3.6/DESCRIPTION
 # RUN R --no-init-file -e ""
-# RUN R -e "options(repos = list(CRAN = 'https://packagemanager.rstudio.com/all/__linux__/bionic/298')); renv::restore()"
+RUN R -e "renv::restore(repos = c(CRAN="https://packagemanager.rstudio.com/all/__linux__/bionic/298"))"
 # RUN wget https://github.com/julou/BinderWithR/raw/R-3.6/DESCRIPTION && R -e "options(repos = list(CRAN = 'http://mran.revolutionanalytics.com/snapshot/2020-07-03/')); devtools::install_deps()"
 
 RUN rm DESCRIPTION.1; exit 0
