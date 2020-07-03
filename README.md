@@ -37,11 +37,13 @@ Binder was initially developed to serve interactive Jupyter notebooks (for pytho
 After one day experimenting with these tools, my overall feeling is that these tools are usable but not fully mature yet.
 I first created this minimalist R project with `renv` used R-4.0.1. It turned out later that rocker/binder doesn't have an image for 4.0.1, and has useless bugged images for 4.0.0 and 4.0.2. So I branched this project to use R-3.6.3. Using `holepunch` triggered various errors including the fact that its current version requires to downgrade `usethis` to 1.5.1 (from current 1.6.1).
 
-### How to achieve reproducibility of the R environment
+The other big challenge is to achieve reproducibility of the R environment...
+
+### Using `holepunch`
 
 It seems that `holepunch` is developed with the idea of a current date in mind, i.e. a date at which the latest version is installed for all packages. In practice, this doesn't match my experience since I tend to upgrade packages along the way (a given project typically takes several months / years to complete in my case). So the approach of `renv` is much more appealing. Unfortunately, the Dockerfile created by `holepunch` hardcodes a certain date for the list of R package so that e.g. the needed version of `renv` (launched automatically when the project is loaded) might not be available; all this can be fixed manually but is admittedly confusing at first.
 
-rocker/binder/3.6.3 retiring to downgrade renv to 0.10
+Nonetheless a typical `holepunch` workflow would be something like:
 
 
 ```{r eval=FALSE}
@@ -64,3 +66,16 @@ build_binder()
 
 ```
 
+### Using Rocker manually
+
+The alternative is to launch a bare Rocker instance and to install the relevant package version using `renv::restore()`.
+To minimise the time of package installation, it is possible to use binaries pre-compiled for Linux from RStudio's package manager (NB: the relevant system prerequisite for Rocker's images are Ubuntu 18).
+
+Follow the instructions at https://hub.docker.com/r/rocker/binder: copy the Dockerfile example at `.binder/Dockerfile` and customise as necessary. In particular, 
+
+- make sure to specify the rocker/binder version corresponding to the R version in your `renv.lock` file.
+- append commands to fetch the GitHub repo and install the packages indicated by `renv`:  
+```
+# binary packages, repo version 2020-07-02
+RUN R -e "renv::restore(repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/bionic/298'))"
+```
