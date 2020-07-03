@@ -1,6 +1,6 @@
 ## Use a tag instead of "latest" for reproducibility
-# FROM rocker/binder:3.6.3
-FROM rocker/binder:4.0.0
+FROM rocker/binder:4.0.2
+LABEL maintainer='Thomas Julou'
 
 ## Declares build arguments
 ARG NB_USER
@@ -20,4 +20,10 @@ RUN chown -R ${NB_USER} ${HOME}
 USER ${NB_USER}
 
 ## Run an install.R script, if it exists.
-RUN if [ -f install.R ]; then R --quiet -f install.R; fi
+#RUN if [ -f install.R ]; then R --quiet -f install.R; fi
+
+RUN wget https://github.com/julou/BinderWithR/raw/R-3.6/DESCRIPTION
+# binary packages, repo version 2020-07-02
+RUN R -e "renv::restore(repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/bionic/298'))"
+
+RUN rm DESCRIPTION.1; exit 0
