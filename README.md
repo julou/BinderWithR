@@ -69,3 +69,5 @@ build_binder()
 
 ### Using Rocker manually
 
+Follow the instructions at https://hub.docker.com/r/rocker/binder.  
+NB: make sure to specify the rocker/binder version corresponding to the R version in your `renv.lock` file...
