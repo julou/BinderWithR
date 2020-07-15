@@ -1,5 +1,5 @@
 ## Use a tag instead of "latest" for reproducibility
-FROM rocker/binder:4.0.1
+FROM rocker/binder:4.0.2
 LABEL maintainer='Thomas Julou'
 
 ## Declares build arguments
