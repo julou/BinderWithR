@@ -22,7 +22,8 @@ USER ${NB_USER}
 ## Run an install.R script, if it exists.
 #RUN if [ -f install.R ]; then R --quiet -f install.R; fi
 
+RUN R -e "renv::restore()" # by default Binder uses rstudio's packagemanager for R≥4.0
 # binary packages, repo version 2020-07-02
-RUN R -e "renv::restore(repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/bionic/298'))"
+# RUN R -e "renv::restore(repos = c(CRAN='https://packagemanager.rstudio.com/all/__linux__/focal/298'))"
 
 RUN rm DESCRIPTION.1; exit 0
